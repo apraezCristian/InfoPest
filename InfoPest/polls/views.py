@@ -26,20 +26,15 @@ def detail(request):
 def results(request):
     return render(request, 'polls/results.html')
 
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
-            'question': question,
-                'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+def vote(request):
+    email = request.POST.get('email')
+    usuarioxd = request.POST.get('uname')
+    password = request.POST.get('psw')
+    psw_repeat = request.POST.get('psw-repeat')
+    edadd = request.POST.get('edad')
+    sexoo = 'nose'
+    nuevo_usuario = usuarios(usuario=usuarioxd, contrasena=password, email_user=email, sexo=sexoo, edad=edadd)
+    nuevo_usuario.save()
+    context = {}
+    context['uname'] = usuarioxd
+    return render(request, 'polls/detail.html', context)

@@ -23,6 +23,9 @@ class Choice(models.Model):
 class usuarios(models.Model):
     usuario = models.CharField(max_length=200)
     contrasena = models.CharField(max_length=200)
+    email_user = models.CharField(max_length=300, default='corre@hotmail.com')
+    sexo = models.CharField(max_length=200, default='no llenado')
+    edad = models.IntegerField(default=0)
 
     def __str__(self):
         return self.usuario + '-' + self.contrasena

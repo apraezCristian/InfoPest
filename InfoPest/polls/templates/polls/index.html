@@ -5,14 +5,21 @@
     <title>My test page</title>
   </head>
   <body>
-    {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-    {% else %}
-        <p>No polls are available.</p>
-    {% endif %}
+   <div class="container">
+    <form action="/polls/lol/" method="post">{% csrf_token %}
+        <label ><b>usuario</b></label>
+        <input type="text"  name="uname" required>
+
+        <label ><b>contraseña</b></label>
+        <input type="password" name="psw" required>
+        <button type="submit">Login</button>
+          </form>
+      </div>
+  <div id = "registrarse">
+      <p>no tienes cuenta?</p>
+      <form action="/polls/registro/" method="post">{% csrf_token %}
+          <button type="submit">registrate!!</button>
+      </form>
+  </div>
   </body>
 </html>

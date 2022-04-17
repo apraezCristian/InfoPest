@@ -19,4 +19,10 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
-    # Create your models here.
+
+class usuarios(models.Model):
+    usuario = models.CharField(max_length=200)
+    contrasena = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.usuario + '-' + self.contrasena
